@@ -17,6 +17,8 @@ class Collection:
 
     def getDocs(self):
         try:
+            path = "dbs" + os.sep + self.db + os.sep + "indexes.uindx"
+            self.collection_index = get_index(path)
             path = "/dbs/" + self.db + "/index/" + self.find_doc_path() + ".uindx"
             docs = []
             for index in self.doc_index:
@@ -25,6 +27,7 @@ class Collection:
                         name = decrypt_name(file_name)
                         docs.append(name)
             print(docs)
+            print("\nOk\n")
         except Exception as e:
             print("\nError: " + str(e) + "\n")
 
@@ -45,7 +48,7 @@ class Collection:
             # update index
             self.doc_index = write_index(file_encrypted_name, path)
             # write index
-            print('llego :D')
+            print("\nOk\n")
         except Exception as e:
             print("\n" + str(e) + "\n")
 
@@ -66,6 +69,8 @@ class Collection:
 
                 else:
                     raise Exception("\nThe collection " + self.name + " doesn't exist\n")
+            pre_path = "dbs" + os.sep + self.db + os.sep + "index"
+            self.doc_index = get_index(os.path.join(pre_path, path + ".uindx"))
             # pre_path = "dbs" + os.sep + self.db + os.sep + "index"
             # path = os.path.join(pre_path, path + ".uindx")
         else:

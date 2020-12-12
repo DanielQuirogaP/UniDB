@@ -22,9 +22,9 @@ class Document:
             with open(path, 'r', encoding='cp037') as f:
                 dic = decrypt_JSON("".join(f.readlines()))
             print(dic)
+            print("\nOk\n")
         except Exception as e:
             print("\n" + str(e) + "\n")
-        pass
 
     def update(self, dic):
         try:
@@ -33,9 +33,9 @@ class Document:
                 actual_dic = decrypt_JSON("".join(f.readlines()))
             new_dic = dict(actual_dic, **dic)
             print(new_dic)
+            print("\nOk\n")
         except Exception as e:
             print("\n" + str(e) + "\n")
-        pass
 
     def put(self, dic):
         try:
@@ -50,20 +50,19 @@ class Document:
 
             index_path = "dbs" + os.sep + self.db + os.sep + "index" + os.sep + encrypted_address + ".uindx"
             name = encrypt_name(self.name)
-            self.doc_index = write_index(name,index_path)
+            self.doc_index = write_index(name, index_path)
 
-            print('file inserted ;D')
+            print("\nOk, file inserted ;D\n")
         except Exception as e:
             print("\n" + str(e) + "\n")
-        pass
 
     def delete(self):
         try:
             path = "/dbs/" + self.db + "/docs/" + self.find_doc_path() + ".uni"
             print(path)
+            print("\nOk\n")
         except Exception as e:
             print("\n" + str(e) + "\n")
-        pass
 
     def get_collection_index(self):
         return self.collection_index

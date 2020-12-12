@@ -13,12 +13,11 @@ class Database:
         self.enc_name = encrypt_name(name)
 
         if not find_index(self.enc_name, database_index):
-            print('entro---------------------------')
+            print("\nCreating: " + self.name + "...\n")
             self.database_index = write_index(self.enc_name)
             root = "dbs"
             #new_path = os.path.join(root, self.enc_name)
             new_path = root + os.sep + self.enc_name
-            print(new_path)
 
             os.mkdir(new_path)
             with open(os.path.join(new_path, "indexes.uindx"), 'w') as f:
@@ -28,6 +27,8 @@ class Database:
             # with open(os.path.join(coll_index_path, "indexes.uindx"), 'w') as f:
             #     f.write("")
             os.mkdir(os.path.join(new_path, "docs"))
+        else:
+            print("\nUsing: "+self.name+"\n")
         db = self.enc_name
         self.collection_index = self.load_collections()
 
